@@ -22,7 +22,7 @@ pipeline {
         }
         stage ('Maven clean + compile') {
             steps {
-                def mvnHome = tool name: 'maven-3.5.4'
+                def mvnHome = tool name: 'MavenPet'
             // withEnv(["PATH+MAVEN=${tool 'maven-3.5.4'}/bin"]) {
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                 sh 'mvn clean compile'
@@ -33,7 +33,7 @@ pipeline {
         stage ('Maven package') {
             steps{//stage
         // Run the maven build
-        def mvnHome = tool name: 'maven-3.5.4'
+        def mvnHome = tool name: 'MavenPet'
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                 sh 'mvn package'
             }
