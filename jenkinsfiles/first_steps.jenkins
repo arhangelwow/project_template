@@ -15,22 +15,28 @@ pipeline {
     stages {
     // def mvnHome = tool name: 'maven-3.5.4'
         
-        stage ('GitHub Preparation') { 
+        stage ('GitHub Preparation') {
+            steps { 
             git 'https://github.com/spring-projects/spring-petclinic'
-        } 
-
+          } 
+        }
         stage ('Maven clean + compile') {
+            steps {
             // withEnv(["PATH+MAVEN=${tool 'maven-3.5.4'}/bin"]) {
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                 sh 'mvn clean compile'
             }
+          }
         }
 
-        stage ('Maven package') {//stage
+        stage ('Maven package') {
+            steps{//stage
         // Run the maven build
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                 sh 'mvn package'
             }
-        }//stage                     
+        }//stage  
+      }
+
     }
 }
