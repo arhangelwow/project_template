@@ -5,7 +5,7 @@ def mvnHome = tool name: 'MavenPet'
 
 pipeline {
     agent { 
-        label 'master'
+        label 'test2slave'
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
