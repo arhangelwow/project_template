@@ -1,36 +1,36 @@
 #!groovy
 // Check test2 properties
 properties([disableConcurrentBuilds()])
+def mvnHome = tool name: 'MavenPet'
 
-pipeline 
-{
+pipeline {
     agent { 
         label 'master'
-          }
+    }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
-            }
+    }
 
     stages {
-            node ('Linux_Slave') {
-                    def mvnHome = tool name: 'maven-3.5.4'
-                    
-                stage ('GitHub Preparation') { 
-                        git 'https://github.com/spring-projects/spring-petclinic'
-                                             }
-                stage ('Maven clean + compile') {
-                    withEnv(["PATH+MAVEN=${tool 'maven-3.5.4'}/bin"]) {
-                            sh 'mvn clean compile'
-                        }
-                    }
+    // def mvnHome = tool name: 'maven-3.5.4'
+        
+        stage ('GitHub Preparation') { 
+            git 'https://github.com/spring-projects/spring-petclinic'
+        } 
 
-                stage ('Maven package') {
-                // Run the maven build
-                    withEnv(["PATH+MAVEN=${tool 'maven-3.5.4'}/bin"]) {
-                            sh 'mvn package'
-                        }
-                    }                    
-                }
-           }
+        stage ('Maven clean + compile') {
+            // withEnv(["PATH+MAVEN=${tool 'maven-3.5.4'}/bin"]) {
+            withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage ('Maven package') {//stage
+        // Run the maven build
+            withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+                sh 'mvn package'
+            }
+        }//stage                     
+    }
 }
