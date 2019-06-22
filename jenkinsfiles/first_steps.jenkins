@@ -2,24 +2,35 @@
 // Check test2 properties
 properties([disableConcurrentBuilds()])
 
-pipeline {
+pipeline 
+{
     agent { 
         label 'master'
-        }
+          }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
-    }
+            }
+
     stages {
-        stage("First step") {
-            steps {
-                sh 'ssh root@test2 \'hostname\''
-            }
-        }
-        stage("Second step") {
-            steps {
-                sh 'ssh root@test2 \'uptime\''
-            }
-        }
-    }
+            node ('Linux_Slave') {
+                    def mvnHome = tool name: 'maven-3.5.4'
+                    
+                stage ('GitHub Preparation') { 
+                        git 'https://github.com/spring-projects/spring-petclinic'
+                                             }
+                stage ('Maven clean + compile') {
+                    withEnv(["PATH+MAVEN=${tool 'maven-3.5.4'}/bin"]) {
+                            sh 'mvn clean compile'
+                        }
+                    }
+
+                stage ('Maven package') {
+                // Run the maven build
+                    withEnv(["PATH+MAVEN=${tool 'maven-3.5.4'}/bin"]) {
+                            sh 'mvn package'
+                        }
+                    }                    
+                }
+           }
 }
