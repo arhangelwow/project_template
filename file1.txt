@@ -1,8 +1,0 @@
-HelloWorld
-"ver4"
-"ver4.1" 
-"ver5" 
-<<<<<<< HEAD
-"ver5.1" 
-=======
->>>>>>> dc7e03bfbdabe0377f25cde7e8114177a59405d3
