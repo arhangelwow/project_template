@@ -3,18 +3,19 @@
 // properties([disableConcurrentBuilds()])
 // def mvnHome = tool name: 'MavenPet'
 def mvnHome = tool 'MavenPet'
-pipeline {
+// pipeline {
+//         agent { 
+//         label 'test2slave'
+//     }
+//     options {
+//         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+//         timestamps()
+//     }
 node ('test2slave') {
 
-    agent { 
-        label 'test2slave'
-    }
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-        timestamps()
-    }
 
-    stages {
+
+    // stages {
     
         
         stage ('GitHub Preparation') {
@@ -41,6 +42,6 @@ node ('test2slave') {
         }//stage  
       }
 
-    }
+    // }
  }
-}
+// }
