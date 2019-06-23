@@ -27,8 +27,9 @@ def mvnHome = tool 'MavenPet'
             // steps {
                 
             // withEnv(["PATH+MAVEN=${tool 'maven-3.5.4'}/bin"]) {
-            withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
-                sh "${mvnTool}/bin/mvn clean compile"
+            withEnv(["PATH+MAVEN=${tool mvnHome}/bin"]) {
+                // sh "${mvnTool}/bin/mvn clean compile"
+                sh "mvn clean compile"
             }
         //   }
         }
@@ -36,8 +37,9 @@ def mvnHome = tool 'MavenPet'
         stage ('Maven package') {
             // steps{//stage
         // Run the maven build
-            withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
-                sh "${mvnTool}/bin/mvn package"
+            withEnv(["PATH+MAVEN=${tool mvnHome}/bin"]) {
+                // sh "${mvnTool}/bin/mvn package"
+                sh "mvn package"
             }
         // }//stage  
       }
