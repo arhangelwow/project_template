@@ -19,27 +19,27 @@ def mvnHome = tool 'MavenPet'
     
         
         stage ('GitHub Preparation') {
-            steps { 
+            // steps { 
             git 'https://github.com/spring-projects/spring-petclinic'
-          } 
+        //   } 
         }
         stage ('Maven clean + compile') {
-            steps {
+            // steps {
                 
             // withEnv(["PATH+MAVEN=${tool 'maven-3.5.4'}/bin"]) {
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                 sh "${mvnTool}/bin/mvn clean compile"
             }
-          }
+        //   }
         }
 
         stage ('Maven package') {
-            steps{//stage
+            // steps{//stage
         // Run the maven build
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                 sh "${mvnTool}/bin/mvn package"
             }
-        }//stage  
+        // }//stage  
       }
 
     // }
