@@ -13,10 +13,7 @@
 //     }
 node ('test2slave') {
 def mvnHome = tool 'MavenPet'
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-        timestamps()
-    }
+        timestamps{}
         stage ('GitHub Preparation') {
             git 'https://github.com/spring-projects/spring-petclinic'
         }
