@@ -2,7 +2,7 @@
 // Check test2 properties
 // properties([disableConcurrentBuilds()])
 // def mvnHome = tool name: 'MavenPet'
-def mvnHome = tool 'MavenPet'
+
 // pipeline {
 //         agent { 
 //         label 'test2slave'
@@ -12,7 +12,7 @@ def mvnHome = tool 'MavenPet'
 //         timestamps()
 //     }
 node ('test2slave') {
-
+def mvnHome = tool 'MavenPet'
 
 
     // stages {
