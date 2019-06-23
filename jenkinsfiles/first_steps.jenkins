@@ -3,8 +3,9 @@
 // properties([disableConcurrentBuilds()])
 // def mvnHome = tool name: 'MavenPet'
 def mvnHome = tool 'MavenPet'
-node ('test2slave') {
 pipeline {
+node ('test2slave') {
+
     agent { 
         label 'test2slave'
     }
