@@ -13,7 +13,7 @@
 //     }
 node ('test2slave') {
 def mvnHome = tool 'MavenPet'
-        timestamps{}
+        timestamps{
         stage ('GitHub Preparation') {
             git 'https://github.com/spring-projects/spring-petclinic'
         }
@@ -29,4 +29,5 @@ def mvnHome = tool 'MavenPet'
                 sh "mvn package"
             }
       }
+   }   
  }
