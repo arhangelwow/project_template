@@ -16,7 +16,7 @@ def mvnHome = tool 'Maven_3.6.3'  //global variable for maven installations in j
 
         stage ('Maven package') {//stage 3
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {//withEnv
-                sh "mvn package"
+                sh "mvn package -DskipTests"
             }//withEnv
       }//stage 3
    } //timestamps  
