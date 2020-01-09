@@ -1,6 +1,6 @@
 #!groovy
 //Scripted Pipeline
-node ('test2slave') {//node
+node ('Slave1Centos') {//node
   
   stage('Start Petclinic Website') {//stage
        try {//try
